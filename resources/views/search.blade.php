@@ -8,6 +8,7 @@
     </head>
     <body>
         <form action="/Search" method="post" enctype="multipart/form-data">
+            <h1>Search Database:</h1>
             @csrf
             <label for="zipcode">ZipCode:</label>
             <input type="text" name="zipcode" id="zipcode" value="{{$zipcode ?? ''}}"/>

@@ -8,6 +8,7 @@
     </head>
     <body>
         <form action="/Upload" method="post" enctype="multipart/form-data">
+            <h1>Upload .csv to Database:</h1>
             @csrf
             <label for="file">Select image to upload:</label>
             <input type="file" name="file" id="file" accept=".csv" />
