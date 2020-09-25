@@ -25,5 +25,5 @@ Route::post('/Upload', 'Upload@post');
 Route::get('/Search', 'Search@get');
 Route::post('/Search', 'Search@post');
 
-Route::get('/Api', 'ApiCall@get');
-Route::get('/Api', 'ApiCall@post');
+Route::get('/Api', 'Apicall@get');
+Route::post('/Api', 'Apicall@post');
