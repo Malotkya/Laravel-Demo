@@ -7,6 +7,9 @@
         <title>Laravel Demo</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Laravel Demo</h1>
+        <a href="/Upload">Objective 1: .csv file upload</a><br/>
+        <a href="/Search">Objective 2: Database Search</a><br/>
+        <a href="/API">Objective 3: Use API</a><br/>
     </body>
 </html>
