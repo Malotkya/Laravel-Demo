@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return phpversion();
+    return view("index");
 });
 
 //.csv file upload
@@ -24,3 +24,6 @@ Route::post('/Upload', 'Upload@post');
 //search database
 Route::get('/Search', 'Search@get');
 Route::post('/Search', 'Search@post');
+
+Route::get('/Api', 'ApiCall@get');
+Route::get('/Api', 'ApiCall@post');

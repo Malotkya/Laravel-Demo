@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'update' => \App\Controllers\Upload::class,
-        'search' => \App\Controllers\Upload::class
+        'search' => \App\Controllers\Search::class,
+        'apicall' => \App\Controllers\ApiCall::class
     ];
 }
