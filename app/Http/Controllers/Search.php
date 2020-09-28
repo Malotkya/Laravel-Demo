@@ -9,30 +9,41 @@ use App\Zipcode;
 
 
 class Search extends Controller {
+
+    private function getStates() {
+        return DB::select(DB::raw("SELECT DISTINCT StateCode FROM zipcode ORDER BY StateCode"));
+    }
+
     public function get() {
-        $states = DB::select(DB::raw("SELECT DISTINCT StateCode FROM zipcode ORDER BY StateCode"));
-        return view("search", ["states" => $states, "state" => ""]);
+        return view("search", ["states" => $this->getStates()]);
     }
 
     public function post() {
-        $states = DB::select(DB::raw("SELECT DISTINCT StateCode FROM zipcode ORDER BY StateCode"));
+        $results = [];
+        $message = "";
 
-        $query = new Zipcode();
+        try {
+            $query = new Zipcode();
 
-        if($_POST['zipcode'] != "")
-            $query = $query->where('ZipCode', $_POST['zipcode']);
-        if($_POST['city'] != "")
-            $query = $query->where('City', strtoupper($_POST['city']));
-        if($_POST['state'] != "")
-            $query = $query->where('StateCode', $_POST['state']);
+            if($_POST['zipcode'] != "")
+                $query = $query->where('ZipCode', intval($_POST['zipcode']));
+            if($_POST['city'] != "")
+                $query = $query->where('City', strtoupper($_POST['city']));
+            if($_POST['state'] != "")
+                $query = $query->where('StateCode', $_POST['state']);
 
-        $results = $query->get();
+            $results = $query->get();
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+        }
+
         return view("search", [
-            "states" => $states,
+            "states" => $this->getStates(),
             "zipcode" => $_POST['zipcode'],
             "city" => $_POST['city'],
             "state" => $_POST['state'],
-            "results" => $results
+            "results" => $query->get(),
+            "message" => $message
         ]);
     }
 }

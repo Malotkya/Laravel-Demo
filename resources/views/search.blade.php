@@ -16,10 +16,16 @@
             <label for="city">City:</label>
             <input type="text" name="city" id="city" value="{{$city ?? ''}}"/>
             <label for="state">State:</label>
+            @php
+            if( !isset($state) )
+                $state = " ";
+            @endphp
             <select name="state" id="state">
-                    <option value=""></option>
+                    <option value="" {{$state == " " ? "selected" : "" }}></option>
                 @foreach ($states as $s)
-                    <option value="{{$s->StateCode}}" {{$state == $s->StateCode ? "selected" : "" }}>{{$s->StateCode}}</option>
+                    <option value="{{$s->StateCode}}" {{$state == $s->StateCode ? "selected" : "" }}>
+                        {{$s->StateCode}}
+                    </option>
                 @endforeach
             </select>
             <input type="submit" value="Search" name="submit" />
